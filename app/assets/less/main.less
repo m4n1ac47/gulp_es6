@@ -1,0 +1,32 @@
+@import "_smart-grid";
+@import "_vars";
+@import "_fonts";
+@import "_reset";
+@import "_libs";
+@import "_hover";
+@import "_media";
+ 
+// .reset();
+
+
+.wrap{
+	.row-flex();
+
+	.item{
+		.col();
+		.size(3);
+		margin-bottom: 30px;
+		background-color: #555;
+
+		&:before{
+			display: block;
+			content:'';
+			margin-top: 100%;
+		} 
+	}
+	
+}
+
+.holder{
+	.wrapper();	
+}	
