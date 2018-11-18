@@ -1,0 +1,9 @@
+@mixin add-font($font-family, $font-style: normal, $font-weight: normal){
+	font-family: "#{$font-family}";
+	src: url("../fonts/#{$font-family}/#{$font-family}.eot");
+	src: url("../fonts/#{$font-family}/#{$font-family}.eot?#iefix")format("embedded-opentype"),
+	url("../fonts/#{$font-family}/#{$font-family}.woff") format("woff"),
+	url("../fonts/#{$font-family}/#{$font-family}.ttf") format("truetype");
+	font-style: $font-style;
+	font-weight: $font-weight;
+}
