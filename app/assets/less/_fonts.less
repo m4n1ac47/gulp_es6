@@ -1,11 +1,11 @@
-.add-font(@font-name; @font-style: normal; @font-weight: normal) {
-	font-family: "@{font-name}";
-	src: url("../fonts/@{font-name}/@{font-name}.eot");
-	src: url("../fonts/@{font-name}/@{font-name}.eot?#iefix")format("embedded-opentype"),
-	url("../fonts/@{font-name}/@{font-name}.woff") format("woff"),
-	url("../fonts/@{font-name}/@{font-name}.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
+.add-font(@font-family; @font-style: normal; @font-weight: normal) {
+	font-family: "@{font-family}";
+	src: url("../fonts/@{font-family}/@{font-family}.eot");
+	src: url("../fonts/@{font-family}/@{font-family}.eot?#iefix")format("embedded-opentype"),
+	url("../fonts/@{font-family}/@{font-family}.woff") format("woff"),
+	url("../fonts/@{font-family}/@{font-family}.ttf") format("truetype");
+	font-style: @font-style;
+	font-weight: @font-weight;
 }
 
 @font-face {.add-font(RobotoRegular); }
