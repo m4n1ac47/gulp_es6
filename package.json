@@ -1,12 +1,12 @@
 {
   "name": "Gulp_ES6",
-  "version": "3.0.0",
+  "version": "4.4.1",
   "description": "Gulp_ES template, based on agragregra/OptimizedHTML-4 and Smartgrid by Dmitrii Lavrik",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "m4n1ac47",
+  "author": "https://github.com/m4n1ac47",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -25,6 +25,7 @@
     "gulp-rsync": "0.0.8",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylus": "^2.7.0",
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
     "smart-grid": "^2.1.2"
