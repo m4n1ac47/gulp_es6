@@ -1,4 +1,4 @@
-let 	syntax = 'less'; // Syntax: scss, sass, less or styl for stylus;
+let 	syntax = 'scss'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
 		path          = require('path'),
@@ -80,8 +80,7 @@ gulp.task('browser-sync', function() {
 
 let precss = {
 	val: '',
-	option: '',
-	path: ''
+	option: ''
 }
 
 switch (syntax) {
@@ -91,22 +90,19 @@ switch (syntax) {
     case "sass":
 	    precss.val = sass;
 	    precss.option = { outputStyle: 'expanded' };
-	    precss.path = 'app/assets/'+syntax+'/**/*.'+syntax+'';
         break;
     case "less":
 	    precss.val  = less;
 	    precss.option = {paths: [ path.join(__dirname, 'app/assets/less', 'includes') ]};
-	    precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
    		break;  
     case "styl":
 	    precss.val  = styl;
 	    precss.option = {'include css': true};
-	    precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
       	break;
 }
 
 gulp.task('styles', function() {
-		return gulp.src(precss.path)
+		return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
 		.pipe(rename({ suffix: '.min', prefix : '' }))
 		.pipe(gcmq())
