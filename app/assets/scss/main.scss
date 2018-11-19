@@ -4,6 +4,7 @@
 @import "reset";
 @import "libs";
 @import "hover";
+@import "media"; // Always at the end
 
 .holder{
 	@include wrapper();
@@ -27,4 +28,3 @@
 	
 }
 
-@import "media"; // Always at the end

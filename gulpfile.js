@@ -1,7 +1,6 @@
-let 	syntax = 'scss'; // Syntax: scss, sass, less or styl for stylus;
+let 	syntax = 'less'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
-		path          = require('path'),
 		gutil         = require('gulp-util'),
 		sass          = require('gulp-sass'),
 		less          = require('gulp-less'),
@@ -93,7 +92,7 @@ switch (syntax) {
         break;
     case "less":
 	    precss.val  = less;
-	    precss.option = {paths: [ path.join(__dirname, 'app/assets/less', 'includes') ]};
+	    precss.option = '';
    		break;  
     case "styl":
 	    precss.val  = styl;
@@ -103,11 +102,13 @@ switch (syntax) {
 
 gulp.task('styles', function() {
 		return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
+		.pipe(sourcemaps.init())
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
 		.pipe(rename({ suffix: '.min', prefix : '' }))
 		.pipe(gcmq())
 		.pipe(autoprefixer(['last 2 versions']))
 		.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('app/assets/css'))	
 		.pipe(browserSync.stream())
 });
