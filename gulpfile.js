@@ -1,9 +1,10 @@
-let 	syntax = 'less'; // Syntax: scss, sass or less;
+let 	syntax = 'scss'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
-		gutil         = require('gulp-util' ),
+		gutil         = require('gulp-util'),
 		sass          = require('gulp-sass'),
-		less          = require('gulp-less')
+		less          = require('gulp-less'),
+		styl          = require('gulp-stylus'),
 		browserSync   = require('browser-sync'),
 		concat        = require('gulp-concat'),
 		uglify        = require('gulp-uglify'),
@@ -82,14 +83,25 @@ let precss = {
 	path: ''
 }
 
-if (syntax == 'less'){
-  	precss.val  = less;
-  	precss.option = '';
-  	precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
-} else if (syntax == 'scss' || syntax == 'sass'){
-	precss.val = sass;
-	precss.option = { outputStyle: 'expanded' };
-	precss.path = 'app/assets/'+syntax+'/**/*.'+syntax+'';
+switch (syntax) {
+	default:
+		syntax = "scss";
+	case "scss":
+    case "sass":
+	    precss.val = sass;
+	    precss.option = { outputStyle: 'expanded' };
+	    precss.path = 'app/assets/'+syntax+'/**/*.'+syntax+'';
+        break;
+    case "less":
+	    precss.val  = less;
+	    precss.option = '';
+	    precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
+   		break;  
+    case "styl":
+	    precss.val  = styl;
+	    precss.option = {'include css': true};
+	    precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
+      	break;
 }
 
 gulp.task('styles', function() {
