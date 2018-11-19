@@ -1,6 +1,7 @@
-let 	syntax = 'scss'; // Syntax: scss, sass, less or styl for stylus;
+let 	syntax = 'less'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
+		path          = require('path'),
 		gutil         = require('gulp-util'),
 		sass          = require('gulp-sass'),
 		less          = require('gulp-less'),
@@ -94,7 +95,7 @@ switch (syntax) {
         break;
     case "less":
 	    precss.val  = less;
-	    precss.option = '';
+	    precss.option = {paths: [ path.join(__dirname, 'app/assets/less', 'includes') ]};
 	    precss.path = 'app/assets/'+syntax+'/**/*main.'+syntax+'';
    		break;  
     case "styl":
