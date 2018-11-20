@@ -106,7 +106,7 @@ gulp.task('styles', function() {
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
 		.pipe(rename({ suffix: '.min', prefix : '' }))
 		.pipe(gcmq())
-		.pipe(autoprefixer(['last 2 versions']))
+		.pipe(autoprefixer(['> 1%', 'last 4 versions']))
 		.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
 		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.write('.'))
 		.pipe(gulp.dest('app/assets/css'))	
