@@ -1,7 +1,7 @@
 {
   "name": "Gulp_ES6",
-  "version": "4.4.1",
-  "description": "Gulp_ES template, based on agragregra/OptimizedHTML-4 and Smartgrid by Dmitrii Lavrik",
+  "version": "4.4.3",
+  "description": "iphilosophy template, based on agragregra/OptimizedHTML-4 and Smartgrid by Dmitrii Lavrik",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

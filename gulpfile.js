@@ -58,7 +58,7 @@ gulp.task('smartgrid', function() {
 	smartgrid('app/assets/'+syntax+'/', settings);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch']); // gulp --type production
 
 gulp.task('clean', function() {
 	return del.sync('dist');
@@ -102,13 +102,13 @@ switch (syntax) {
 
 gulp.task('styles', function() {
 		return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
-		.pipe(sourcemaps.init())
+		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.init())
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
 		.pipe(rename({ suffix: '.min', prefix : '' }))
 		.pipe(gcmq())
 		.pipe(autoprefixer(['last 2 versions']))
 		.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
-		.pipe(sourcemaps.write())
+		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.write('.'))
 		.pipe(gulp.dest('app/assets/css'))	
 		.pipe(browserSync.stream())
 });
@@ -120,26 +120,13 @@ gulp.task('js', function() {
 		'app/assets/libs/scroll.js',
 		'app/assets/js/common.js', // Always at the end
 		])
-	.pipe(sourcemaps.init())
+	.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.init())
 	.pipe(concat('scripts.min.js'))
-	.pipe(sourcemaps.write('.'))
+	.pipe(gutil.env.type === 'production' ? babel({presets: ['@babel/env']}) : gutil.noop())
+	.pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // Mifify js (opt.)
+	.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.write('.'))
 	.pipe(gulp.dest('app/assets/js'))
 	.pipe(browserSync.reload({ stream: true }))
-});
-
-gulp.task('js-bundle', function() {
-	return gulp.src([
-		'app/assets/libs/jquery/dist/jquery.min.js',
-		'app/assets/libs/jquery.maskedinput.min.js',
-		'app/assets/libs/scroll.js',
-		'app/assets/js/common.js', // Always at the end
-		])
-	.pipe(concat('scripts.min.js'))
-	.pipe(babel({
-			presets: ['@babel/env']
-		}))
-	.pipe(uglify()) // Mifify js (opt.)
-	.pipe(gulp.dest('app/assets/js'))
 });
 
 gulp.task('rsync', function() {
@@ -164,13 +151,20 @@ gulp.task('watch', ['styles', 'js', 'browser-sync'], function() {
 	gulp.watch('app/*.html', browserSync.reload)
 });
 
-gulp.task('build', ['clean', 'styles', 'js-bundle'], function(){
+gulp.task('set-type-production', function(){
+	gutil.env.type = 'production';
+});
 
-	let buildCss = gulp.src('app/assets/css/**/*')
+gulp.task('build', ['set-type-production', 'clean', 'styles', 'js'], function(){
+	
+	let buildCss = gulp.src('app/assets/css/**/*.css')
 	.pipe(gulp.dest('dist/assets/css'))
 
 	let buildFonts = gulp.src('app/assets/fonts/**/*')
 	.pipe(gulp.dest('dist/assets/fonts'))
+
+	let buildImg = gulp.src('app/assets/img/**/*')
+	.pipe(gulp.dest('dist/assets/img'))
 
 	let buildJs = gulp.src('app/assets/js/scripts.min.js')
 	.pipe(gulp.dest('dist/assets/js'))
