@@ -1,0 +1,114 @@
+// @media (pointer:coarse) {
+//     .which-pointer::after {
+//         content: "You have a coarse pointer, are you on a touchscreen device?";    
+//     } 
+// }
+
+// @media (pointer:fine) {
+//     .which-pointer::after {
+//         content: "You have a fine pointer, are you using a mouse or trackpad?";    
+//     } 
+// }
+
+// Media Queries: interaction media features
+
+// @mixin media($width){
+// 	@media only screen and (max-width: $width) {
+// 		@content;
+// 	}
+// }
+
+// @mixin hover($width: 1024px){
+// 	@media only screen and (min-width: $width) {
+// 		@content;
+// 	}
+// }
+
+// Mixins for Before and After
+
+.bef(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+	}
+}
+
+.bef-in(@content){
+	&:before{
+		@content(); 
+
+	}
+}
+
+.aft(@display: block, @content: ""){
+	&:after{
+		display: @display;
+		content: @content;
+	}
+}
+
+.aft-in(@content){
+	&:after{
+		@content();
+	}
+}
+
+// Aspect ratio 16/9 
+
+.wide(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 56.25%;
+	}
+}
+
+// Aspect ratio 1/1 
+
+.sq(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 100%;
+	}
+}
+
+// Aspect ratio 2/1 
+
+.r21(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 50%;
+	}
+}
+
+// Aspect ratio 2/1 
+
+.r12(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 200%;
+	}
+}
+
+// Aspect ratio 4/3
+
+.r43(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 75%;
+	}
+}
+
+// Aspect any ratio
+
+.any(@a, @b, @display: block, @content: ''){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: calc(@b ~"/" @a ~"*" 100%);	
+	}
+}
