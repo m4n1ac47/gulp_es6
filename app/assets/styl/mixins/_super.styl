@@ -1,0 +1,78 @@
+// Media Queries: interaction media features
+
+media(width)
+	@media only screen and (max-width: width)
+		{block}
+	
+// =hover($width: 1024px)
+// 	@media only screen and (min-width: $width)
+// 	
+
+// Mixins for Before and After
+// use +bef and +aft
+
+bef($display = unquote(block), $content = '')
+	&:before
+		display: $display
+		content: $content
+		{block}
+
+aft($display = unquote(block), $content = "")
+	&:after
+		display $display
+		content $content
+		{block}
+
+// Aspect ratio 16/9 		
+
+wide($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 56.25%
+		{block}
+
+// Aspect ratio 1/1 
+
+sq($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 100%
+		{block}
+
+// Aspect ratio 2/1 
+
+ar21($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 50%
+		{block}
+
+// Aspect ratio 1/2 
+
+ar12($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 200%
+		{block}
+
+// Aspect ratio 4/3
+
+ar43($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 75%
+		{block}
+
+// Aspect any ratio
+
+any($a, $b, $display = unquote('block'), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom ($b / $a) * 100%
+		{block}
