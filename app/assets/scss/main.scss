@@ -19,7 +19,6 @@
         @include size(3);
         margin-bottom: 30px;
         background-color: #777;
-        
         @include any(1, 1);
 
     }
