@@ -1,4 +1,4 @@
-let 	syntax = 'less'; // Syntax: scss, sass, less or styl for stylus;
+let 	syntax = 'sass'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
 		gutil         = require('gulp-util'),
