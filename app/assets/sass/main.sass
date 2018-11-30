@@ -1,9 +1,9 @@
 @import 'smart-grid'
 @import 'vars'
+@import 'mixins/super'
 @import 'fonts'
 @import 'reset'
 @import 'libs'
-@import 'hover'
 @import 'media'
 
 .wrapper
@@ -19,7 +19,4 @@
 	margin-bottom: 30px
 	background-color: #555
 
-	&:before
-		display: block
-		content: ''
-		margin-top: 100%
+	+any(16, 9)
