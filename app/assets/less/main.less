@@ -1,16 +1,16 @@
 @import "_smart-grid";
 @import "_vars";
+@import "mixins/_super";
 @import "_fonts";
 @import "_reset";
 @import "_libs";
-@import "_hover";
 @import "_media";
 
-.holder{
+.wrapper{
 	.wrapper();	
 }
 
-.wrap{
+.row{
 	.row-flex();
 	
 	.item{
@@ -18,12 +18,9 @@
 		.size(3);
 		margin-bottom: 30px;
 		background-color: #555;
+		.sq();
 
-		&:before{
-			display: block;
-			content:'';
-			margin-top: 100%;
-		} 
 	}
 	
 }
+
