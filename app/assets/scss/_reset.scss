@@ -1,10 +1,9 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,p{margin:0;padding:0;border:0;outline:0}
-h1,h2,h3,h4,h5,h6{font-weight:600;font-size:1em}
+h1,h2,h3,h4,h5,h6{font-weight:700;font-size:1em}
 html,body{position:relative;font-size:1em;font-weight:400;width:100%;height:100%}
-// body{font-family:'RobotoLight'}
+// body{font-family:'Sans-serif'}
 header,footer,section,article,aside,main,nav{display:block}
-body{}
-img{border:none!important}
+img{border:none!important; max-width: 100%;}
 input,textarea{outline:none;box-shadow:none!important;}
 textarea{resize:none}
 a,a:visited,a:link,a:active{color:inherit;text-decoration:none;outline:0}
@@ -26,7 +25,7 @@ a,a:visited,a:link,a:active{color:inherit;text-decoration:none;outline:0}
 .abs100{position:absolute;width:100%;height:100%;top:0;left:0}
 .fixed100{position:fixed;width:100%;height:100%;top:0;left:0}
 .typical-scroll-block{position:absolute;height:100%;top:0;left:0;overflow-x:hidden;overflow-y:scroll}
-.usn,h1,h2,h3,h4,h5,h6{-webkit-user-select:none;cursor:default}
+.usn{-webkit-user-select:none;cursor:default}
 :focus::-webkit-input-placeholder {color: transparent}
 :focus::-moz-placeholder          {color: transparent}
 :focus:-moz-placeholder           {color: transparent}
