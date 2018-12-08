@@ -19,6 +19,7 @@
         @include size-md(6);
         @include size-xs(12);
         margin-bottom: 30px;
+        @extend .bg_cov;
         background-color: #777;
         @include this('bear.jpeg');
         background-image: resolve('bear.jpeg');
