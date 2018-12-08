@@ -107,3 +107,15 @@
 		@content;
 	}
 }
+
+@mixin this($img, $display: block, $content: ""){
+	$a: width($img);
+	$b: height($img);
+	$c: calc(strip(#{$b}) / strip(#{$a}) * 100%);
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: $c;
+		@content;
+	}
+}
