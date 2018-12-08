@@ -10,11 +10,21 @@
 
 //	Max copability – for old and rich clients. 
 
+// .font(@font-name, @font-family: @font-name, @font-weight: normal, @font-style: normal){
+// 	@font-face {
+// 		font-family: '@{font-family}';
+// 		src: url('../fonts/@{font-name}/@{font-name}.woff2') format('woff2'),
+// 		url('../fonts/@{font-name}/@{font-name}.woff') format('woff');
+// 		font-weight: @font-weight;
+// 		font-style: @font-style;
+// 	}
+// }
+
 .font(@font-name, @font-family: @font-name, @font-weight: normal, @font-style: normal){
 	@font-face {
 		font-family: '@{font-family}';
-		src: url('../fonts/@{font-name}/@{font-name}.woff2') format('woff2'),
-		url('../fonts/@{font-name}/@{font-name}.woff') format('woff');
+		src: resolve('@{font-name}.woff2') format('woff2'),
+		resolve('@{font-name}.woff') format('woff');
 		font-weight: @font-weight;
 		font-style: @font-style;
 	}
