@@ -34,7 +34,7 @@ let plugins = [
 			sort: sortCSSmq
 		}),
 		autoprefixer(['> 1%', 'last 4 versions']),
-		cssnano() // Opt., comment out when debugging
+		// cssnano() // Opt., comment out when debugging
 		];		
 
 let settings = {
@@ -120,7 +120,7 @@ switch (syntax) {
 
 gulp.task('styles', function() {
 		// return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
-		return gulp.src([`app/assets/${syntax}/**/*.${syntax}`, `!app/assets/${syntax}/**/*_`])
+		return gulp.src([`app/assets/${syntax}/**/*.${syntax}`, `!app/assets/${syntax}/**/_*`])
 		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.init())
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
 		.pipe(postcss(plugins).on("error", notify.onError()))
@@ -163,6 +163,7 @@ gulp.task('rsync', function() {
 
 gulp.task('watch', ['styles', 'js', 'browser-sync'], function() {
 	gulp.watch('app/assets/'+syntax+'/**/*.'+syntax+'', ['styles']);
+	// gulp.watch(`app/assets/${syntax}/**/*.${syntax}`, ['styles']);
 	gulp.watch(['libs/**/*.js', 'app/assets/js/common.js'], ['js']);
 	gulp.watch('app/**/*.php', browserSync.reload);
 	gulp.watch('app/*.html', browserSync.reload)
