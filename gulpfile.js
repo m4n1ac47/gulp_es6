@@ -34,7 +34,7 @@ let plugins = [
 			sort: sortCSSmq
 		}),
 		autoprefixer(['> 1%', 'last 4 versions']),
-		// cssnano() // Opt., comment out when debugging
+		cssnano() // Opt., comment out when debugging
 		];		
 
 let settings = {
