@@ -76,3 +76,15 @@ any($a, $b, $display = unquote('block'), $content = "")
 		content $content
 		padding-bottom ($b / $a) * 100%
 		{block}
+		
+
+this($img, $display = unquote('block'), $content = "")
+	$a = width(unquote($img))
+	$b = height(unquote($img))
+	$c = strip($b)
+	$d = strip($a)
+	&:before
+		display $display
+		content $content
+		padding-bottom "calc(%s / %s * 100%)" % ($c $d)
+		{block}
