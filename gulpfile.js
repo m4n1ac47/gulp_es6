@@ -1,4 +1,4 @@
-let 	syntax = 'styl'; // Syntax: scss, sass, less or styl for stylus;
+let 	syntax = 'scss'; // Syntax: scss, sass, less or styl for stylus;
 
 let 	gulp          = require('gulp'),
 		gutil         = require('gulp-util'),
@@ -8,16 +8,34 @@ let 	gulp          = require('gulp'),
 		browserSync   = require('browser-sync'),
 		concat        = require('gulp-concat'),
 		uglify        = require('gulp-uglify'),
-		cleancss      = require('gulp-clean-css'),
+		cssnano       = require('cssnano'),
 		rename        = require('gulp-rename'),
-		autoprefixer  = require('gulp-autoprefixer'),
+		autoprefixer  = require('autoprefixer');
 		notify        = require("gulp-notify"),
 		rsync         = require('gulp-rsync'),
 		smartgrid     = require('smart-grid'),
-		gcmq          = require('gulp-group-css-media-queries'),
 		del           = require('del'),
 		babel 		  = require('gulp-babel'),
-		sourcemaps    = require('gulp-sourcemaps');
+		sourcemaps    = require('gulp-sourcemaps'),
+		postcss    	  = require('gulp-postcss'),									
+		assets        = require('postcss-assets'),
+		mqpacker      = require('css-mqpacker'),
+		sortCSSmq     = require('sort-css-media-queries'),
+		stripUnits    = require('postcss-strip-units');
+		
+
+let plugins = [
+		assets({
+			loadPaths: ['app/assets/fonts/**/*', 'app/assets/img/'],
+			relativeTo: 'app/assets/css/'
+		}),
+		stripUnits,
+		mqpacker({
+			sort: sortCSSmq
+		}),
+		autoprefixer(['> 1%', 'last 4 versions']),
+		cssnano() // Opt., comment out when debugging
+		];		
 
 let settings = {
     outputStyle: ''+syntax+'', /* less || scss || sass || styl */
@@ -54,7 +72,7 @@ let settings = {
     }
 };
 
-gulp.task('smartgrid', function() {
+gulp.task('grid', function() {
 	smartgrid('app/assets/'+syntax+'/', settings);
 });
 
@@ -88,7 +106,7 @@ switch (syntax) {
 	case "scss":
     case "sass":
 	    precss.val = sass;
-	    precss.option = { outputStyle: 'expanded' };
+	    precss.option = '';
         break;
     case "less":
 	    precss.val  = less;
@@ -101,13 +119,12 @@ switch (syntax) {
 }
 
 gulp.task('styles', function() {
-		return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
+		// return gulp.src(['app/assets/'+syntax+'/**/*.'+syntax+'', '!app/assets/'+syntax+'/**/_*'])
+		return gulp.src([`app/assets/${syntax}/**/*.${syntax}`, `!app/assets/${syntax}/**/*_`])
 		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.init())
 		.pipe(precss.val(precss.option).on("error", notify.onError()))
+		.pipe(postcss(plugins).on("error", notify.onError()))
 		.pipe(rename({ suffix: '.min', prefix : '' }))
-		.pipe(gcmq())
-		.pipe(autoprefixer(['> 1%', 'last 4 versions']))
-		.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
 		.pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.write('.'))
 		.pipe(gulp.dest('app/assets/css'))	
 		.pipe(browserSync.stream())
