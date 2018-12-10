@@ -1,18 +1,21 @@
-// @mixin add-font($font-family, $font-style: normal, $font-weight: normal){
-// 	@font-face {
-// 		font-family: "#{$font-family}";
-// 		src: url("../fonts/#{$font-family}/#{$font-family}.eot");
-// 		src: url("../fonts/#{$font-family}/#{$font-family}.eot?#iefix")format("embedded-opentype"),
-// 		url("../fonts/#{$font-family}/#{$font-family}.woff") format("woff"),
-// 		url("../fonts/#{$font-family}/#{$font-family}.ttf") format("truetype");
-// 		font-style: $font-style;
-// 		font-weight: $font-weight;
-// 	}
-// }
+// Adding font using PostCSS
 
-//	Max copability – for old and rich clients. 
+@mixin font($font-family, $font-name: $font-family, $font-weight: normal, $font-style: normal){
+	@font-face {
+		font-family: '#{$font-family}';
+		src: resolve('#{$font-name}.woff2') format('woff2'),
+		resolve('#{$font-name}.woff') format('woff');
+		font-weight: $font-weight;
+		font-style: $font-style;
+	}
+}
 
-// @mixin font($font-name, $font-family: $font-name, $font-weight: normal, $font-style: normal){
+// Adding font without using PostCSS
+// The font should be located in the directory ../assets/font/font-name/
+// for example ../assets/font/RobotoRegular/RobotoRegular.woff2
+//             ../assets/font/RobotoRegular/RobotoRegular.woff
+
+// @mixin font($font-family, $font-name: $font-family, $font-weight: normal, $font-style: normal){
 // 	@font-face {
 // 		font-family: '#{$font-family}';
 // 		src: url('../fonts/#{$font-name}/#{$font-name}.woff2') format('woff2'),
@@ -22,12 +25,16 @@
 // 	}
 // }
 
-@mixin font($font-name, $font-family: $font-name, $font-weight: normal, $font-style: normal){
-	@font-face {
-		font-family: '#{$font-family}';
-		src: resolve('#{$font-name}.woff2') format('woff2'),
-		resolve('#{$font-name}.woff') format('woff');
-		font-weight: $font-weight;
-		font-style: $font-style;
-	}
-}
+//	Maximum support with old permissions, only for rich and inadequate customers. 
+
+// @mixin font($font-family, $font-name: $font-family, $font-weight: normal, $font-style: normal){
+// 	@font-face {
+// 		font-family: "#{$font-family}";
+// 		src: url("../fonts/#{$font-name}/#{$font-name}.eot");
+// 		src: url("../fonts/#{$font-name}/#{$font-name}.eot?#iefix")format("embedded-opentype"),
+// 		url("../fonts/#{$font-name}/#{$font-name}.woff") format("woff"),
+// 		url("../fonts/#{$font-name}/#{$font-name}.ttf") format("truetype");
+// 		font-style: $font-style;
+// 		font-weight: $font-weight;
+// 	}
+// }

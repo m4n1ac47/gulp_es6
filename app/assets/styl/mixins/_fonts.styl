@@ -1,10 +1,22 @@
-// font-face($font-family, $style = 'normal', $weight = 'normal')
-//   $file-path ='../fonts/' + $font-family
+// Adding font using PostCSS
+
+font($font-family, $font-name = $font-family, $font-weight = 'normal', $font-style = 'normal')
+  @font-face
+    font-family: $font-family
+    src: resolve($font-name + '.woff2') format('woff2'), resolve($font-name + '.woff') format('woff')
+    font-weight: $font-weight
+    font-style: $font-style
+    
+
+//	Maximum support with old permissions, only for rich and inadequate customers.
+    
+// font($font-family, $font-name = $font-family, $style = 'normal', $weight = 'normal')
+//   $file-path ='../fonts/' + $font-name
 //   $url-fallback = 'url("' + $file-path + '.eot")'
 //   $url  = 'url("' + $file-path + '.eot?#iefix") format("embedded-opentype"), '
 //   $url = $url + 'url("' + $file-path + '.woff") format("woff"), '
 //   $url = $url + 'url("' + $file-path + '.ttf") format("truetype"), '
-//   $url = $url + 'url("' + $file-path + '.svg#svg' + replace(' ', '', $font-family) + '") format("svg")'
+//   $url = $url + 'url("' + $file-path + '.svg#svg' + replace(' ', '', $font-name) + '") format("svg")'
 
 //   @font-face
 //     font-family $font-family
@@ -12,10 +24,3 @@
 //     src unquote($url)
 //     font-weight unquote($weight)
 //     font-style unquote($style)
-
-font($font-name, $font-family = $font-name, $font-weight = 'normal', $font-style = 'normal')
-  @font-face
-    font-family: $font-family
-    src: resolve($font-name + '.woff2') format('woff2'), resolve($font-name + '.woff') format('woff')
-    font-weight: $font-weight
-    font-style: $font-style
