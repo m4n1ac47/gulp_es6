@@ -1,25 +1,97 @@
-// @media (pointer:coarse) {
-//     .which-pointer::after {
-//         content: "You have a coarse pointer, are you on a touchscreen device?";    
-//     } 
-// }
+// Set any aspect ratio
 
-// @media (pointer:fine) {
-//     .which-pointer::after {
-//         content: "You have a fine pointer, are you using a mouse or trackpad?";    
-//     } 
-// }
-
-// Media Queries: interaction media features
-
-@mixin media($width){
-	@media only screen and (max-width: $width) {
+@mixin set($a: 1, $b: 1, $display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: ($b / $a) * 100%;
 		@content;
 	}
 }
 
-@mixin hover($width: 1024px){
-	@media only screen and (min-width: $width) {
+// Get current aspect ratio
+
+@mixin get($img, $display: block, $content: ""){
+	$a: width($img);
+	$b: height($img);
+	$c: calc(strip(#{$b}) / strip(#{$a}) * 100%);
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: $c;
+		@content;
+	}
+}
+
+// Set aspect ratio 16/9 
+
+@mixin wide($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 56.25%;
+		@content;
+	}
+}
+
+@mixin s169($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 56.25%;
+		@content;
+	}
+}
+
+// Set aspect ratio 1/1 
+
+@mixin sq($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 100%;
+		@content;
+	}
+}
+
+@mixin s11($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 100%;
+		@content;
+	}
+}
+
+// Set aspect ratio 2/1 
+
+@mixin s21($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 50%;
+		@content;
+	}
+}
+
+// Set aspect ratio 1/2 
+
+@mixin s12($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 200%;
+		@content;
+	}
+}
+
+// Set aspect ratio 4/3
+
+@mixin s43($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: 75%;
 		@content;
 	}
 }
@@ -42,80 +114,23 @@
 	}
 }
 
-// Aspect ratio 16/9 
 
-@mixin wide($display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: 56.25%;
+// Media Queries
+
+@mixin min($width){
+	@media screen and (min-width: $width) {
 		@content;
 	}
 }
 
-// Aspect ratio 1/1 
-
-@mixin sq($display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: 100%;
+@mixin max($width){
+	@media screen and (max-width: $width) {
 		@content;
 	}
 }
 
-// Aspect ratio 2/1 
-
-@mixin ar21($display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: 50%;
-		@content;
-	}
-}
-
-// Aspect ratio 2/1 
-
-@mixin ar12($display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: 200%;
-		@content;
-	}
-}
-
-// Aspect ratio 4/3
-
-@mixin ar43($display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: 75%;
-		@content;
-	}
-}
-
-// Aspect any ratio
-
-@mixin any($a, $b, $display: block, $content: ""){
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: ($b / $a) * 100%;
-		@content;
-	}
-}
-
-@mixin this($img, $display: block, $content: ""){
-	$a: width($img);
-	$b: height($img);
-	$c: calc(strip(#{$b}) / strip(#{$a}) * 100%);
-	&:before{
-		display: $display;
-		content: $content;
-		padding-bottom: $c;
+@mixin minmax($min-width, $max-width){
+	@media screen and (min-width: $min-width) and (max-width: $max-width) {
 		@content;
 	}
 }

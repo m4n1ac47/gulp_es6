@@ -1,61 +1,37 @@
-// @media (pointer:coarse) {
-//     .which-pointer::after {
-//         content: "You have a coarse pointer, are you on a touchscreen device?";    
-//     } 
-// }
+// Set any aspect ratio
 
-// @media (pointer:fine) {
-//     .which-pointer::after {
-//         content: "You have a fine pointer, are you using a mouse or trackpad?";    
-//     } 
-// }
-
-// Media Queries: interaction media features
-
-// @mixin media($width){
-// 	@media only screen and (max-width: $width) {
-// 		@content;
-// 	}
-// }
-
-// @mixin hover($width: 1024px){
-// 	@media only screen and (min-width: $width) {
-// 		@content;
-// 	}
-// }
-
-// Mixins for Before and After
-
-.bef(@display: block, @content: ""){
+.set(@a: 1, @b: 1, @display: block, @content: ''){
 	&:before{
 		display: @display;
 		content: @content;
+		padding-bottom: (@b / @a) * 100%;	
 	}
 }
 
-.bef-in(@content){
+// Get current aspect ratio
+
+.get(@img, @display: block, @content: ""){
+	@a: width(@img);
+	@b: height(@img);
+	@c: calc(strip(@b) / strip(@a) * 100%);
 	&:before{
-		@content(); 
-
-	}
-}
-
-.aft(@display: block, @content: ""){
-	&:after{
 		display: @display;
 		content: @content;
-	}
-}
-
-.aft-in(@content){
-	&:after{
-		@content();
+		padding-bottom: @c;
 	}
 }
 
 // Aspect ratio 16/9 
 
 .wide(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 56.25%;
+	}
+}
+
+.s169(@display: block, @content: ""){
 	&:before{
 		display: @display;
 		content: @content;
@@ -73,9 +49,17 @@
 	}
 }
 
+.s11(@display: block, @content: ""){
+	&:before{
+		display: @display;
+		content: @content;
+		padding-bottom: 100%;
+	}
+}
+
 // Aspect ratio 2/1 
 
-.r21(@display: block, @content: ""){
+.s21(@display: block, @content: ""){
 	&:before{
 		display: @display;
 		content: @content;
@@ -85,7 +69,7 @@
 
 // Aspect ratio 2/1 
 
-.r12(@display: block, @content: ""){
+.s12(@display: block, @content: ""){
 	&:before{
 		display: @display;
 		content: @content;
@@ -95,7 +79,7 @@
 
 // Aspect ratio 4/3
 
-.r43(@display: block, @content: ""){
+.s43(@display: block, @content: ""){
 	&:before{
 		display: @display;
 		content: @content;
@@ -103,24 +87,40 @@
 	}
 }
 
-// Aspect any ratio
+// Mixins for Before and After
 
-.any(@a, @b, @display: block, @content: ''){
+.bef(@block, @display: block, @content: ""){
 	&:before{
 		display: @display;
 		content: @content;
-		padding-bottom: (@b / @a) * 100%;	
+		@block(); 
 	}
 }
 
-
-.this(@img, @display: block, @content: ""){
-	@a: width(@img);
-	@b: height(@img);
-	@c: calc(strip(@b) / strip(@a) * 100%);
-	&:before{
+.aft(@block, @display: block, @content: ""){
+	&:after{
 		display: @display;
 		content: @content;
-		padding-bottom: @c;
+		@block();
+	}
+}
+
+// Media Queries
+
+.min(@width, @content){
+	@media screen and (min-width: @width){
+		@content();
+	}
+}
+
+.max(@width, @content){
+	@media screen and (max-width: @width){
+		@content();
+	}
+}
+
+.minmax(@min-width, @max-width, @content){
+	@media screen and (min-width: @min-width) and (max-width: @max-width){
+		@content();
 	}
 }
