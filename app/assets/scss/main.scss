@@ -16,25 +16,9 @@
     .item{
         @include col();
         @include size(3);
-        @include size-md(6);
-        @include size-xs(12);
         margin-bottom: 30px;
         @extend .bg_cov;
-        background-color: #777;
-        @include this('bear.jpeg');
+        @include get('bear.jpeg');
         background-image: resolve('bear.jpeg');
     }
-}
-
-.title{
-	font-family: Roboto;
-	font-weight: 100;
-	font-weight: 300;
-	font-weight: 400;
-	font-weight: 500;
-	font-weight: 700;
-	text-align: center;
-	font-size: 3em;
-	margin: 50px;
-	display: block;
 }
