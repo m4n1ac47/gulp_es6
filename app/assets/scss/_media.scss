@@ -1,41 +1,35 @@
 /*==========  Desktop First  ==========*/
 
-// ≥1200px
-@media only screen and (max-width: 1200px){
+// @include max(1200px){
 
-}
+// }
 
-// ≥992px
-@media only screen and (max-width: 992px){
+// @include max(992px){
 	
-}
+// }
 
-// ≥768px
-@media only screen and (max-width: 768px){
+// @include max(768px){
 	
-}
+// }
 
-// ≥576px
-@media only screen and (max-width: 576px){
+// @include max(576px){
 	
-}
-
-/*==========  Desktop First  ==========*/
-
-// ≥1200px
-
-// ≥992px
-
-// ≥768px
-
-// ≥576px
+// }
 
 /*==========  Mobile First  ==========*/
 
-// ≤576px
+// @include max(576px){
+	
+// }
 
-// ≤768px
+// @include max(768px){
+	
+// }
 
-// ≤992px
+// @include max(992px){
+	
+// }
 
-// ≤1200px
+// @include max(1200px){
+
+// }
