@@ -1,8 +1,7 @@
 @import "smart-grid";
-@import "vars";
+@import "mixins/wonder";
 @import "fonts";
-@import "reset";
-@import "mixins/super";
+@import "vars";
 @import "libs";
 @import "media"; // Always at the end
 
@@ -21,4 +20,19 @@
         @include get('bear.jpeg');
         background-image: resolve('bear.jpeg');
     }
+}
+
+body{
+    font-family: $font-roboto;
+}
+
+.title{
+    text-align: center;
+    font-size: 3em;
+    font-weight: 100;
+    font-weight: 300;
+    font-weight: normal;
+    font-weight: 500;
+    font-weight: 700;
+    font-weight: 900;
 }
