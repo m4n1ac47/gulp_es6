@@ -1,0 +1,228 @@
+/* Add font */
+
+font($font-family, $font-name = $font-family, $font-weight = 'normal', $font-style = 'normal')
+  @font-face
+    font-family: $font-family
+    src: resolve($font-name + '.woff2') format('woff2'), resolve($font-name + '.woff') format('woff')
+    font-weight: $font-weight
+    font-style: $font-style
+
+/* Media Queries */
+
+min(width)
+	@media screen and (min-width: width)
+		{block}
+		
+max(width)
+	@media screen and (max-width: width)
+		{block}
+		
+minmax($min-width, $max-width)
+	@media screen and (min-width: $min-width) and (max-width: $max-width)
+		{block}
+
+/* Set any aspect ratio */
+
+set($a = 1, $b = 1, $display = unquote('block'), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom ($b / $a) * 100%
+		{block}
+
+/* Get current aspect ratio */
+
+get($img, $display = unquote('block'), $content = "")
+	$a = width(unquote($img))
+	$b = height(unquote($img))
+	$c = strip($b)
+	$d = strip($a)
+	&:before
+		display $display
+		content $content
+		padding-bottom "calc(%s / %s * 100%)" % ($c $d)
+		{block}
+		
+/* Set aspect ratio 16/9 */		
+
+wide($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 56.25%
+		{block}
+		
+s169($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 56.25%
+		{block}
+
+/* Set aspect ratio 1/1 */ 
+
+sq($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 100%
+		{block}
+		
+s11($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 100%
+		{block}
+
+/* Set aspect ratio 2/1 */
+
+s21($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 50%
+		{block}
+
+/* Set aspect ratio 1/2 */ 
+
+s12($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 200%
+		{block}
+
+/* Set aspect ratio 4/3 */
+
+s43($display = unquote(block), $content = "")
+	&:before
+		display $display
+		content $content
+		padding-bottom 75%
+		{block}
+
+/* Mixins for Before and After */
+
+bef($display = unquote(block), $content = '')
+	&:before
+		display: $display
+		content: $content
+		{block}
+
+aft($display = unquote(block), $content = "")
+	&:after
+		display $display
+		content $content
+		{block}
+
+
+/* Reset */
+
+res()
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,p
+	  margin: 0
+	  padding: 0
+	  border: 0
+	  outline: 0
+	h1,h2,h3,h4,h5,h6
+	  font-weight: 600
+	  font-size: 1em
+	html,body
+	  position: relative
+	  font-size: 1em
+	  font-weight: 400
+	  width: 100%
+	  height: 100%
+	header,footer,section,article,aside,main,nav
+	  display: block
+	body
+	img
+	  border: none !important
+	input,textarea
+	  outline: none
+	  box-shadow: none !important
+	textarea
+	  resize: none
+	a,a:visited,a:link,a:active
+	  color: inherit
+	  text-decoration: none
+	  outline: 0
+	/* SUPPORTING */
+	.clear
+	  clear: both
+	.ibt
+	  display: inline-block
+	  vertical-align: top
+	.ibm
+	  display: inline-block
+	  vertical-align: middle
+	.ibb
+	  display: inline-block
+	  vertical-align: bottom
+	.bbox
+	  box-sizing: border-box
+	.tal
+	  text-align: left
+	.tac
+	  text-align: center
+	.tar
+	  text-align: right
+	.contain
+	  background-size: contain
+	  background-position: center
+	  background-repeat: no-repeat
+	.cover
+	  background-size: cover
+	  background-position: center
+	  background-repeat: no-repeat
+	.helper
+	  display: inline-block
+	  vertical-align: middle
+	  position: relative
+	  height: 100%
+	  width: 0
+	.bg_con
+	  background-size: contain
+	  background-position: center
+	  background-repeat: no-repeat
+	.bg_cov
+	  background-size: cover
+	  background-position: center
+	  background-repeat: no-repeat
+	.helper
+	  display: inline-block
+	  vertical-align: middle
+	  position: relative
+	  height: 100%
+	  width: 0
+	.abs100
+	  position: absolute
+	  width: 100%
+	  height: 100%
+	  top: 0
+	  left: 0
+	.fixed100
+	  position: fixed
+	  width: 100%
+	  height: 100%
+	  top: 0
+	  left: 0
+	.typical-scroll-block
+	  position: absolute
+	  height: 100%
+	  top: 0
+	  left: 0
+	  overflow-x: hidden
+	  overflow-y: scroll
+	.usn,h1,h2,h3,h4,h5,h6
+	  -webkit-user-select: none
+	  cursor: default
+	:focus::-webkit-input-placeholder
+	  color: transparent
+	:focus::-moz-placeholder
+	  color: transparent
+	:focus:-moz-placeholder
+	  color: transparent
+	:focus:-ms-input-placeholder
+	  color: transparent
