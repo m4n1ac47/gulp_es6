@@ -30,7 +30,7 @@
 	}
 }
 
-// Set any aspect ratio
+/* Set any aspect ratio */
 
 @mixin set($a: 1, $b: 1, $display: block, $content: ""){
 	&:before{
@@ -41,7 +41,7 @@
 	}
 }
 
-// Get current aspect ratio
+/* Get current aspect ratio */
 
 @mixin get($img, $display: block, $content: ""){
 	$a: width($img);
@@ -55,7 +55,7 @@
 	}
 }
 
-// Set aspect ratio 16/9 
+/* Set aspect ratio 16/9 */
 
 @mixin wide($display: block, $content: ""){
 	&:before{
@@ -75,7 +75,7 @@
 	}
 }
 
-// Set aspect ratio 1/1 
+/* Set aspect ratio 1/1 */ 
 
 @mixin sq($display: block, $content: ""){
 	&:before{
@@ -95,7 +95,7 @@
 	}
 }
 
-// Set aspect ratio 2/1 
+/* Set aspect ratio 2/1 */
 
 @mixin s21($display: block, $content: ""){
 	&:before{
@@ -106,7 +106,7 @@
 	}
 }
 
-// Set aspect ratio 1/2 
+/* Set aspect ratio 1/2 */
 
 @mixin s12($display: block, $content: ""){
 	&:before{
@@ -117,7 +117,7 @@
 	}
 }
 
-// Set aspect ratio 4/3
+/* Set aspect ratio 4/3 */
 
 @mixin s43($display: block, $content: ""){
 	&:before{
@@ -128,7 +128,7 @@
 	}
 }
 
-// Mixins for Before and After
+/* Mixins for Before and After */
 
 @mixin bef($display: block, $content: ""){
 	&:before{
