@@ -55,6 +55,18 @@
 	}
 }
 
+/* Create img */
+
+@mixin img($img, $bg_size: cover){
+	background-image: resolve($img);
+	width: width($img);
+	max-width: 100%;
+	background-size: $bg_size;
+	background-position: center;
+	background-repeat: no-repeat;
+	@include get($img);
+}
+
 /* Set aspect ratio 16/9 */
 
 @mixin wide($display: block, $content: ""){

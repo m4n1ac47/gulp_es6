@@ -42,6 +42,17 @@ get($img, $display = unquote('block'), $content = "")
 		content $content
 		padding-bottom "calc(%s / %s * 100%)" % ($c $d)
 		{block}
+
+/* Create image */
+
+img($img, $bg_size = unquote('cover'))
+	background-size $bg_size
+	background-position center
+	background-repeat no-repeat
+	background-image resolve($img)
+	width width($img)
+	max-width 100%
+	get($img)
 		
 /* Set aspect ratio 16/9 */		
 

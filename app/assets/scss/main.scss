@@ -5,34 +5,40 @@
 @import "libs";
 @import "media"; // Always at the end
 
-.wrapper{
-	@include wrapper();
-}
+// .wrapper{
+// 	@include wrapper();
+// }
 
-.row{
-    @include row-flex();
+// .row{
+//     @include row-flex();
  
-    .item{
-        @include col();
-        @include size(3);
-        margin-bottom: 30px;
-        @extend .bg_cov;
-        @include get('bear.jpeg');
-        background-image: resolve('bear.jpeg');
-    }
-}
+//     .item{
+//         @include col();
+//         @include size(3);
+//         @include size-md(4);
+//         @include size-xs(6);
+//         margin-bottom: 30px;
+//         @extend .bg_cov;
+//         @include get('bear.jpeg');
+//         background-image: resolve('bear.jpeg');
+//     }
+// }
 
-body{
-    font-family: $font-roboto;
-}
+// body{
+//     font-family: $font-roboto;
+// }
 
-.title{
-    text-align: center;
-    font-size: 3em;
-    font-weight: 100;
-    font-weight: 300;
-    font-weight: normal;
-    font-weight: 500;
-    font-weight: 700;
-    font-weight: 900;
+// .title{
+//     text-align: center;
+//     font-size: 3em;
+//     font-weight: 100;
+//     font-weight: 300;
+//     font-weight: normal;
+//     font-weight: 500;
+//     font-weight: 700;
+//     font-weight: 900;
+// }
+
+.item-img{
+    @include img('bear.jpeg');
 }

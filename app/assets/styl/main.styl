@@ -7,18 +7,23 @@
 
 res()
 
-.wrapper
-	wrapper()
+// .wrapper
+// 	wrapper()
 
-.row
-	row-flex()
+// .row
+// 	row-flex()
 
-.item
-	col()
-	size(3)
-	margin-bottom 30px
-	background-color #333
-	@extend .bg_cov;
-	background-image resolve('bear.jpeg')
-	+get('bear.jpeg')
-		box-sizing border-box
+// .item
+// 	col()
+// 	size(3)
+// 	margin-bottom 30px
+// 	background-color #333
+// 	@extend .bg_cov;
+// 	background-image resolve('bear.jpeg')
+// 	+get('bear.jpeg')
+// 		box-sizing border-box
+
+.item-img
+	background-color #777
+	img('bear.jpeg')		
+

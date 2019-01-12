@@ -53,6 +53,18 @@
 	}
 }
 
+/* Create img */
+
+.img(@img, @bg_size: cover){
+	background-image: resolve(@img);
+	width: width(@img);
+	max-width: 100%;
+	background-size: @bg_size;
+	background-position: center;
+	background-repeat: no-repeat;
+	.get(@img);
+}
+
 /* Set aspect ratio 16/9 */
 
 .wide(@display: block, @content: ""){
