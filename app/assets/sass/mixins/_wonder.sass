@@ -53,65 +53,6 @@
 	background-repeat: no-repeat
 	+get($img)
 
-/* Set aspect ratio 16/9 */
-
-=wide($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 56.25%
-		@content
-
-=s169($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 56.25%
-		@content
-
-/* Set aspect ratio 1/1 */ 
-
-=sq($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 100%
-		@content
-
-=s11($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 100%
-		@content
-
-/* Set aspect ratio 2/1 */
-
-=s21($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 50%
-		@content
-
-/* Set aspect ratio 1/2 */ 
-
-=s12($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 200%
-		@content
-
-/* Set aspect ratio 4/3 */
-
-=s43($display: block, $content: "")
-	&:before
-		display: $display
-		content: $content
-		padding-bottom: 75%
-		@content
-
 /* Mixins for Before and After */
 
 =bef($display: block, $content: "")

@@ -54,65 +54,6 @@ img($img, $bg_size = unquote('cover'))
 	max-width 100%
 	get($img)
 		
-/* Set aspect ratio 16/9 */		
-
-wide($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 56.25%
-		{block}
-		
-s169($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 56.25%
-		{block}
-
-/* Set aspect ratio 1/1 */ 
-
-sq($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 100%
-		{block}
-		
-s11($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 100%
-		{block}
-
-/* Set aspect ratio 2/1 */
-
-s21($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 50%
-		{block}
-
-/* Set aspect ratio 1/2 */ 
-
-s12($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 200%
-		{block}
-
-/* Set aspect ratio 4/3 */
-
-s43($display = unquote(block), $content = "")
-	&:before
-		display $display
-		content $content
-		padding-bottom 75%
-		{block}
-
 /* Mixins for Before and After */
 
 bef($display = unquote(block), $content = '')
